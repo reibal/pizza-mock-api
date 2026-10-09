@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Margherita",
+    "ingredients": ["tomate", "mozzarella", "albahaca"],
+    "prepTime": 15,
+    "cookTime": 10,
+    "price": 8.5,
+    "ownerUsername": "admin"
+  },
+  {
+    "name": "Carbonara",
+    "ingredients": ["nata", "bacon", "queso", "huevo"],
+    "prepTime": 20,
+    "cookTime": 12,
+    "price": 10,
+    "ownerUsername": "admin"
+  },
+  {
+    "name": "Barbacoa",
+    "ingredients": ["salsa barbacoa", "carne picada", "cebolla", "mozzarella"],
+    "prepTime": 18,
+    "cookTime": 14,
+    "price": 11.5,
+    "ownerUsername": "user"
+  },
+  {
+    "name": "Cuatro Quesos",
+    "ingredients": ["mozzarella", "gorgonzola", "parmesano", "provolone"],
+    "prepTime": 12,
+    "cookTime": 11,
+    "price": 12,
+    "ownerUsername": "user"
+  }
+]
