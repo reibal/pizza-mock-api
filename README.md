@@ -153,6 +153,7 @@ curl http://localhost:3000/api/users \
 |--------|------|--------|----------|
 | GET | `/api/pizzas` | No | Lista todas las pizzas |
 | GET | `/api/pizzas/search?name=carbonara` | No | Busca una pizza por nombre (no distingue mayúsculas) |
+| GET | `/api/pizzas/{pizzaId}` | No | Devuelve una pizza por su id |
 | POST | `/api/auth/login` | No | Devuelve un token si las credenciales son correctas |
 | POST | `/api/auth/register` | No | Crea un usuario (el rol es opcional) |
 | GET | `/api/users` | Sí (admin) | Lista los usuarios con su id y rol |
@@ -174,11 +175,15 @@ curl http://localhost:3000/api/users \
 }
 ```
 
+La respuesta incluye además `id`, `ownerId`, `createdAt`, `updatedAt` y el campo calculado
+`totalTime` (la suma de `prepTime` + `cookTime` más 1 minuto).
+
 ---
 
 ## Reglas de negocio (resumen)
 
 - No puede haber dos pizzas con el mismo nombre (se ignora mayúsculas/minúsculas).
+- Toda respuesta con una pizza incluye un campo calculado `totalTime` (`prepTime` + `cookTime` + 1), que no se envía al crear o editar.
 - Un `user` solo puede editar o borrar las pizzas que ha creado.
 - Un `admin` puede editar o borrar cualquier pizza.
 - El token caduca a las 12 horas.

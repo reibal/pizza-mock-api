@@ -10,7 +10,12 @@ const endpoints = [
   { method: 'POST', path: '/api/auth/register', auth: false, desc: 'Crea un usuario' },
   { method: 'POST', path: '/api/pizzas/new', auth: true, desc: 'Crea una pizza' },
   { method: 'PUT', path: '/api/pizzas/{pizzaId}', auth: true, desc: 'Reemplaza una pizza' },
-  { method: 'PATCH', path: '/api/pizzas/{pizzaId}', auth: true, desc: 'Modifica campos de una pizza' },
+  {
+    method: 'PATCH',
+    path: '/api/pizzas/{pizzaId}',
+    auth: true,
+    desc: 'Modifica campos de una pizza',
+  },
   { method: 'DELETE', path: '/api/pizzas/{pizzaId}', auth: true, desc: 'Elimina una pizza' },
 ];
 
@@ -63,7 +68,8 @@ export default function HomePage() {
           <p>
             Credenciales semilla (se recrean en cada arranque):
             <br />
-            <code>admin / admin123</code> — rol <strong>admin</strong> (puede editar cualquier pizza)
+            <code>admin / admin123</code> — rol <strong>admin</strong> (puede editar cualquier
+            pizza)
             <br />
             <code>user / user123</code> — rol <strong>user</strong> (solo sus propias pizzas)
           </p>

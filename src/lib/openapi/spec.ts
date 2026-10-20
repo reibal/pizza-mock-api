@@ -1,7 +1,4 @@
-import {
-  OpenAPIRegistry,
-  OpenApiGeneratorV31,
-} from '@asteasolutions/zod-to-openapi';
+import { OpenAPIRegistry, OpenApiGeneratorV31 } from '@asteasolutions/zod-to-openapi';
 
 import { z } from '@/lib/zod';
 import {
@@ -71,6 +68,21 @@ registry.registerPath({
   responses: {
     200: jsonBody('The matching pizza', Pizza),
     400: jsonBody('Missing name query parameter', ErrorResponse),
+    404: jsonBody('Pizza not found', ErrorResponse),
+  },
+});
+
+registry.registerPath({
+  method: 'get',
+  path: '/api/pizzas/{pizzaId}',
+  tags: ['Pizzas'],
+  summary: 'Get a pizza by id',
+  description: 'Returns a single pizza by its id. Public endpoint.',
+  request: {
+    params: z.object({ pizzaId: z.string().openapi({ example: 'uuid' }) }),
+  },
+  responses: {
+    200: jsonBody('The requested pizza', Pizza),
     404: jsonBody('Pizza not found', ErrorResponse),
   },
 });
@@ -148,7 +160,9 @@ registry.registerPath({
       description: 'Pizza deleted',
       content: {
         'application/json': {
-          schema: z.object({ message: z.string().openapi({ example: 'Pizza deleted successfully' }) }),
+          schema: z.object({
+            message: z.string().openapi({ example: 'Pizza deleted successfully' }),
+          }),
         },
       },
     },

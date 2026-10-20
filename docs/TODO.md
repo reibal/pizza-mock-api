@@ -53,6 +53,7 @@
 - [x] `domain/repositories/pizza-repository.ts`
 - [x] `application/dto/pizza.dto.ts`
 - [x] `application/use-cases/list-pizzas.ts`
+- [x] `application/use-cases/get-pizza-by-id.ts`
 - [x] `application/use-cases/search-pizza-by-name.ts`
 - [x] `application/use-cases/create-pizza.ts`
 - [x] `application/use-cases/update-pizza.ts`
@@ -71,7 +72,7 @@
 - [x] `src/app/api/pizzas/route.ts` (GET)
 - [x] `src/app/api/pizzas/new/route.ts` (POST)
 - [x] `src/app/api/pizzas/search/route.ts` (GET)
-- [x] `src/app/api/pizzas/[pizzaId]/route.ts` (PUT, PATCH, DELETE)
+- [x] `src/app/api/pizzas/[pizzaId]/route.ts` (GET, PUT, PATCH, DELETE)
 
 ## FASE 7 — OpenAPI + Scalar UI
 
@@ -108,4 +109,7 @@
 - [x] `UserRepository.findAll` + `ListUsersUseCase`
 - [x] Middleware: protege `/api/users` y mantiene públicas las lecturas de pizzas
 - [x] OpenAPI: `role` en registro y documentación de `/api/users`
+- [x] `GET /api/pizzas/:pizzaId` (obtener una pizza por id)
+- [x] Campo calculado `totalTime` (`prepTime + cookTime + 1`) en todas las respuestas de pizza
+- [x] OpenAPI: documentado `GET /api/pizzas/{pizzaId}` y `totalTime` en el esquema `Pizza`
 

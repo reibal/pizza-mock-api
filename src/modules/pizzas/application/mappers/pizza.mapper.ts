@@ -8,6 +8,7 @@ export function toPizzaResponse(pizza: PizzaEntity): PizzaResponseDTO {
     ingredients: pizza.ingredients,
     prepTime: pizza.prepTime,
     cookTime: pizza.cookTime,
+    totalTime: pizza.totalTime,
     price: pizza.price,
     ownerId: pizza.ownerId,
     createdAt: pizza.createdAt,

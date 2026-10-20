@@ -74,6 +74,7 @@ Request
 | ingredients | string[] | |
 | prepTime | number | minutos |
 | cookTime | number | minutos |
+| totalTime | number | calculado: `prepTime + cookTime + 1` (solo en la respuesta, no se persiste) |
 | price | number | |
 | ownerId | string | id del usuario creador |
 | createdAt / updatedAt | string (ISO) | |
@@ -100,6 +101,8 @@ Request
 - **RN-09**: `register` acepta un `role` opcional (`user` por defecto, o `admin`). Es una
   simplificación deliberada para el curso: no hay verificación de privilegios para crear admins.
 - **RN-10**: Solo un `admin` autenticado puede listar usuarios (`GET /api/users`).
+- **RN-11**: Toda respuesta que incluya una pizza añade el campo calculado `totalTime`
+  (`prepTime + cookTime + 1`). Es de solo lectura: no se acepta como entrada en POST/PUT/PATCH.
 
 ## 6. Endpoints
 
@@ -107,6 +110,7 @@ Request
 |--------|------|------|-------------|
 | GET | `/api/pizzas` | No | Lista todas las pizzas |
 | GET | `/api/pizzas/search?name=<name>` | No | Busca por nombre (case-insensitive). 404 si no existe |
+| GET | `/api/pizzas/:pizzaId` | No | Devuelve una pizza por su id. 404 si no existe |
 | POST | `/api/auth/login` | No | Devuelve `{ token, user }` si las credenciales son válidas |
 | POST | `/api/auth/register` | No | Crea usuario (cuerpo con `role` opcional, por defecto `user`). No devuelve token |
 | GET | `/api/users` | Sí (admin) | Lista todos los usuarios con su id, username, rol y fecha de alta |

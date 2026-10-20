@@ -47,6 +47,10 @@ export class PizzaEntity {
     return this.props.cookTime;
   }
 
+  get totalTime(): number {
+    return this.props.prepTime + this.props.cookTime + 1;
+  }
+
   get price(): number {
     return this.props.price;
   }

@@ -11,6 +11,7 @@ import {
 } from '@/lib/validators/pizza';
 import { CreatePizzaUseCase } from '../../application/use-cases/create-pizza';
 import { DeletePizzaUseCase } from '../../application/use-cases/delete-pizza';
+import { GetPizzaByIdUseCase } from '../../application/use-cases/get-pizza-by-id';
 import { ListPizzasUseCase } from '../../application/use-cases/list-pizzas';
 import { PartialUpdatePizzaUseCase } from '../../application/use-cases/partial-update-pizza';
 import { SearchPizzaByNameUseCase } from '../../application/use-cases/search-pizza-by-name';
@@ -20,6 +21,7 @@ import { MemoryPizzaRepository } from '../repositories/memory-pizza-repository';
 const pizzaRepository = new MemoryPizzaRepository();
 const listPizzas = new ListPizzasUseCase(pizzaRepository);
 const searchPizzaByName = new SearchPizzaByNameUseCase(pizzaRepository);
+const getPizzaById = new GetPizzaByIdUseCase(pizzaRepository);
 const createPizza = new CreatePizzaUseCase(pizzaRepository);
 const updatePizza = new UpdatePizzaUseCase(pizzaRepository);
 const partialUpdatePizza = new PartialUpdatePizzaUseCase(pizzaRepository);
@@ -40,6 +42,15 @@ export const pizzaController = {
         name: request.nextUrl.searchParams.get('name') ?? '',
       });
       return success(await searchPizzaByName.execute(query.name));
+    } catch (error) {
+      return handleApiError(error);
+    }
+  },
+
+  async getById(pizzaId: string) {
+    try {
+      pizzaParamsSchema.parse({ pizzaId });
+      return success(await getPizzaById.execute(pizzaId));
     } catch (error) {
       return handleApiError(error);
     }

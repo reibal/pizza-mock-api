@@ -9,6 +9,11 @@ interface RouteContext {
   params: Promise<{ pizzaId: string }>;
 }
 
+export async function GET(request: NextRequest, context: RouteContext) {
+  const { pizzaId } = await context.params;
+  return pizzaController.getById(pizzaId);
+}
+
 export async function PUT(request: NextRequest, context: RouteContext) {
   const { pizzaId } = await context.params;
   return pizzaController.update(request, pizzaId);

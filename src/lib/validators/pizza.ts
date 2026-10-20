@@ -3,7 +3,7 @@ import { z } from '@/lib/zod';
 export const pizzaBodySchema = z
   .object({
     name: z
-      .string({ message: 'name is required' })
+      .string()
       .trim()
       .min(1, 'name must not be empty')
       .max(80, 'name must be at most 80 characters'),
@@ -11,16 +11,14 @@ export const pizzaBodySchema = z
       .array(z.string().trim().min(1, 'ingredient must not be empty'))
       .min(1, 'ingredients must contain at least one item'),
     prepTime: z
-      .number({ message: 'prepTime is required' })
+      .number()
       .int('prepTime must be an integer')
       .nonnegative('prepTime must be zero or greater'),
     cookTime: z
-      .number({ message: 'cookTime is required' })
+      .number()
       .int('cookTime must be an integer')
       .nonnegative('cookTime must be zero or greater'),
-    price: z
-      .number({ message: 'price is required' })
-      .positive('price must be greater than zero'),
+    price: z.number().positive('price must be greater than zero'),
   })
   .strict();
 
@@ -49,6 +47,7 @@ export const pizzaResponseSchema = z.object({
   ingredients: z.array(z.string()),
   prepTime: z.number(),
   cookTime: z.number(),
+  totalTime: z.number(),
   price: z.number(),
   ownerId: z.string(),
   createdAt: z.string(),

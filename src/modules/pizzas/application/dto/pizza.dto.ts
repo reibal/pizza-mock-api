@@ -22,6 +22,7 @@ export interface PizzaResponseDTO {
   ingredients: string[];
   prepTime: number;
   cookTime: number;
+  totalTime: number;
   price: number;
   ownerId: string;
   createdAt: string;
